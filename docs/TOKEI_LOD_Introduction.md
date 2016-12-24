@@ -42,3 +42,7 @@
 [e-stat 統計LOD](http://trial-data.e-stat.go.jp/lodw/)
 
 [統計LODサポート](http://idease.info/lodstat/)
+
+[GitHub HTML Preview](http://htmlpreview.github.io)
+
+jupyter notebookのSPARQL kernelをgithubがレンダリングしてくれないようなので。
