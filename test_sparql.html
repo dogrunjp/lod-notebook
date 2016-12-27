@@ -11746,7 +11746,7 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-sparql-nb"><pre><span class="x">%endpoint http://data.e-stat.go.jp/lod/sparql/query</span>
@@ -11811,7 +11811,7 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-sparql-nb"><pre><span class="x">%endpoint http://data.e-stat.go.jp/lod/sparql/query</span>
-<span class="c"># 新宿区の日本人の人口を求める</span><span class="w"></span>
+<span class="c"># プロパティパスを使わないで書いてみる</span><span class="w"></span>
 <span class="k">PREFIX</span><span class="w"> </span><span class="nn">rdfs</span><span class="p">:</span><span class="nl">&lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span><span class="w"> </span>
 <span class="k">PREFIX</span><span class="w"> </span><span class="nn">cd-dimension</span><span class="p">:</span><span class="nl">&lt;http://data.e-stat.go.jp/lod/ontology/crossDomain/dimension/&gt;</span><span class="w"> </span>
 <span class="k">PREFIX</span><span class="w"> </span><span class="nn">cd-code</span><span class="p">:</span><span class="nl">&lt;http://data.e-stat.go.jp/lod/ontology/crossDomain/code/&gt;</span><span class="w"> </span>
@@ -11823,7 +11823,7 @@ div#notebook {
 <span class="k">PREFIX</span><span class="w"> </span><span class="nn">pc-code-2010</span><span class="p">:</span><span class="nl">&lt;http://data.e-stat.go.jp/lod/ontology/populationCensus/code/2010/&gt;</span><span class="w"> </span>
 <span class="k">PREFIX</span><span class="w"> </span><span class="nn">sac</span><span class="p">:</span><span class="nl">&lt;http://data.e-stat.go.jp/lod/sac/&gt;</span><span class="w"> </span>
 <span class="k">PREFIX</span><span class="w"> </span><span class="nn">ic</span><span class="p">:</span><span class="nl">&lt;http://imi.ipa.go.jp/ns/core/rdf#&gt;</span><span class="w"> </span>
-<span class="k">select</span><span class="w">  </span><span class="nv">?o</span><span class="w"></span>
+<span class="k">select</span><span class="w">  </span><span class="nv">?o</span><span class="w"> </span>
 <span class="k">where</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">      </span><span class="nv">?s</span><span class="w"> </span><span class="nn">pc-measure-2010</span><span class="p">:</span><span class="nt">population</span><span class="w"> </span><span class="nv">?o</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
 <span class="w">         </span><span class="nn">cd-dimension</span><span class="p">:</span><span class="nt">standardAreaCode</span><span class="w"> </span><span class="nv">?areacode</span><span class="p">.</span><span class="w"></span>
@@ -11832,48 +11832,6 @@ div#notebook {
 <span class="w">         </span><span class="nn">cd-dimension-2016</span><span class="p">:</span><span class="nt">sex</span><span class="w"> </span><span class="nn">cd-code-2016</span><span class="p">:</span><span class="nt">sex-total</span><span class="w"> </span><span class="p">;</span><span class="w"> </span>
 <span class="w">         </span><span class="nn">pc-dimension-2010</span><span class="p">:</span><span class="nt">area</span><span class="w"> </span><span class="nn">pc-code-2010</span><span class="p">:</span><span class="nt">area-all</span><span class="w"> </span><span class="p">;</span><span class="w"> </span>
 <span class="w">         </span><span class="nn">cd-dimension-2016</span><span class="p">:</span><span class="nt">age</span><span class="w"> </span><span class="nn">cd-code-2016</span><span class="p">:</span><span class="nt">age-total</span><span class="w"> </span><span class="p">.</span><span class="w"> </span>
-<span class="p">}</span><span class="w"></span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
-<div class="output_text output_subarea ">
-<pre>{&#39;head&#39;: {&#39;vars&#39;: [&#39;o&#39;]},
- &#39;results&#39;: {&#39;bindings&#39;: [{&#39;o&#39;: {&#39;datatype&#39;: &#39;http://www.w3.org/2001/XMLSchema#decimal&#39;,
-                                 &#39;type&#39;: &#39;typed-literal&#39;,
-                                 &#39;value&#39;: &#39;286398&#39;}}]}}</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-sparql-nb"><pre><span class="x">%endpoint http://data.e-stat.go.jp/lod/sparql/query</span>
-<span class="c">#新宿区の保育所数</span><span class="w"></span>
-<span class="k">PREFIX</span><span class="w"> </span><span class="nn">ssds-measure-2016</span><span class="p">:</span><span class="nl">&lt;http://data.e-stat.go.jp/lod/ontology/systemOfSocialAndDemographicStatistics/measure/2016/&gt;</span><span class="w"></span>
-<span class="k">PREFIX</span><span class="w"> </span><span class="nn">cd-dimension</span><span class="p">:</span><span class="nl">&lt;http://data.e-stat.go.jp/lod/ontology/crossDomain/dimension/&gt;</span><span class="w"> </span>
-<span class="k">PREFIX</span><span class="w"> </span><span class="nn">ic</span><span class="p">:</span><span class="nl">&lt;http://imi.ipa.go.jp/ns/core/rdf#&gt;</span><span class="w"> </span>
-<span class="k">select</span><span class="w"> </span><span class="nv">?hoikusho_num</span><span class="w"></span>
-<span class="k">where</span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nv">?s</span><span class="w"> </span><span class="nn">ssds-measure-2016</span><span class="p">:</span><span class="nt">J2503</span><span class="w"> </span><span class="nv">?hoikusho_num</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="nn">cd-dimension</span><span class="p">:</span><span class="nt">standardAreaCode</span><span class="w"> </span><span class="nv">?areacode</span><span class="p">.</span><span class="w"></span>
-<span class="w">     </span><span class="nv">?areacode</span><span class="w"> </span><span class="err">ic</span><span class="p">:</span><span class="err">市区町村</span><span class="w">  </span><span class="s">&quot;新宿区&quot;</span><span class="o">@</span><span class="nf">ja</span><span class="p">.</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 
@@ -11897,10 +11855,10 @@ div#notebook {
 
 
 <div class="output_text output_subarea ">
-<pre>{&#39;head&#39;: {&#39;vars&#39;: [&#39;num&#39;]},
- &#39;results&#39;: {&#39;bindings&#39;: [{&#39;num&#39;: {&#39;datatype&#39;: &#39;http://www.w3.org/2001/XMLSchema#decimal&#39;,
-                                   &#39;type&#39;: &#39;typed-literal&#39;,
-                                   &#39;value&#39;: &#39;36&#39;}}]}}</pre>
+<pre>{&#39;head&#39;: {&#39;vars&#39;: [&#39;o&#39;]},
+ &#39;results&#39;: {&#39;bindings&#39;: [{&#39;o&#39;: {&#39;datatype&#39;: &#39;http://www.w3.org/2001/XMLSchema#decimal&#39;,
+                                 &#39;type&#39;: &#39;typed-literal&#39;,
+                                 &#39;value&#39;: &#39;286398&#39;}}]}}</pre>
 </div>
 
 </div>
