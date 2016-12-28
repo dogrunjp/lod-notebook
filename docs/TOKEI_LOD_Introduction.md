@@ -43,5 +43,5 @@
 
 [統計LODサポート](http://idease.info/lodstat/)
 
-[notebookのプレビュー](http://nbviewer.jupyter.org/github/dogrunjp/hello_estat_lod/blob/master/test_sparql.ipynb)
+[notebookのプレビュー](http://nbviewer.jupyter.org/github/dogrunjp/hello_estat_lod/blob/master/index.ipynb)
 
