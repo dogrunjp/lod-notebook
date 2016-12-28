@@ -43,6 +43,5 @@
 
 [統計LODサポート](http://idease.info/lodstat/)
 
-[GitHub HTML Preview](http://htmlpreview.github.io)
+[notebookのプレビュー](http://nbviewer.jupyter.org/github/dogrunjp/hello_estat_lod/blob/master/test_sparql.ipynb)
 
-jupyter notebookのSPARQL kernelをgithubがレンダリングしてくれないようなので。
