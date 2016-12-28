@@ -4,4 +4,4 @@
 Jupyterにsparql kernelをインストールするとサンプルipynbファイルを実行できると思いますが、githubではsparql kernelがレンダリングされないようなので、プレビューは下記のリンクからご覧ください。
 
 
-[test_sparql notebook preview](http://htmlpreview.github.io/?https://github.com/dogrunjp/hello_estat_lod/blob/master/test_sparql.html)
+[test_sparql notebook preview](http://nbviewer.jupyter.org/github/dogrunjp/hello_estat_lod/blob/master/test_sparql.ipynb)
