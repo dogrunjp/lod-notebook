@@ -1,7 +1,18 @@
-統計LODを気が向いたときに触っています。サンプルのSPARQLを色々書きつつ、統計LODの利用方法を蓄積＆共有できると良いかなと……。
+# hello estat LODについて
+
+日本の政府統計をLinked Open Dataとして公開する統計LODですが、
+知りたい情報とRDFのプロパティを簡単に結びつけるアプリケーションや辞書などのツールがまだ無く、
+また統計LODを利用するために必用なSPARQLも前述の理由も含めて直感的に記述できるものではありません。
+LODとして政府の持つ統計データを利用できるのは大変便利なのですが、
+LODとして公開されることの恩恵を受けるためにはそれなりのデータを扱うための知識が必用そうです。
 
 
-Jupyterにsparql kernelをインストールするとサンプルipynbファイルを実行できると思いますが、githubではsparql kernelがレンダリングされないようなので、プレビューは下記のリンクからご覧ください。
+このレポジトリではJupyterのnotebookを使って興味のある政府統計のデータを手探りで統計LODから取得しつつ
+そのノウハウを蓄積し共有していきたいと思います。
 
 
-[test_sparql notebook preview](http://nbviewer.jupyter.org/github/dogrunjp/hello_estat_lod/blob/master/index.ipynb)
+[preview](http://nbviewer.jupyter.org/github/dogrunjp/hello_estat_lod/blob/master/index.ipynb)
+
+
+Jupyterにsparql kernelをインストールするとipynbファイルが実行できると思います。
+githubではsparql kernelがレンダリングされないようなので、プレビューを見たい場合は上記のリンクからご覧ください。
