@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>test_sparql</title>
+<title>index</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -11958,7 +11958,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-sparql-nb"><pre><span class="x">%endpoint http://data.e-stat.go.jp/lod/sparql/query</span>
@@ -12190,6 +12190,187 @@ div#notebook {
 <td class=val>12</td>
 <td class=val>1424</td>
 <td class=val>50</td></tr></table><div class="tinfo">Total: 63, Shown: 20</div></div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>さらに関係ありそうなデータをエリアコードをキーに追加していきたいと思います。
+統計LODサポートで今度は「病院」を検索します。「一般病院数」のプロパティがあるのでこれをSPARQLに追加します。
+また最初のサンプルで取得しているような、区毎の人口もざっくり（全年齢、全盛別の値で）追加してみます。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-sparql-nb"><pre><span class="x">%endpoint http://data.e-stat.go.jp/lod/sparql/query</span>
+<span class="err">%displ</span><span class="k">a</span><span class="err">y</span><span class="w"> </span><span class="err">t</span><span class="k">a</span><span class="err">ble</span><span class="w"></span>
+<span class="k">PREFIX</span><span class="w"> </span><span class="nn">ssds-measure-2016</span><span class="p">:</span><span class="nl">&lt;http://data.e-stat.go.jp/lod/ontology/systemOfSocialAndDemographicStatistics/measure/2016/&gt;</span><span class="w"></span>
+<span class="k">PREFIX</span><span class="w"> </span><span class="nn">cd-dimension</span><span class="p">:</span><span class="nl">&lt;http://data.e-stat.go.jp/lod/ontology/crossDomain/dimension/&gt;</span><span class="w"> </span>
+<span class="k">PREFIX</span><span class="w"> </span><span class="nn">pc-measure-2010</span><span class="p">:</span><span class="nl">&lt;http://data.e-stat.go.jp/lod/ontology/populationCensus/measure/2010/&gt;</span><span class="w"> </span>
+<span class="k">PREFIX</span><span class="w"> </span><span class="nn">pc-dimension-2010</span><span class="p">:</span><span class="nl">&lt;http://data.e-stat.go.jp/lod/ontology/populationCensus/dimension/2010/&gt;</span><span class="w"> </span>
+<span class="k">PREFIX</span><span class="w"> </span><span class="nn">cd-dimension-2016</span><span class="p">:</span><span class="nl">&lt;http://data.e-stat.go.jp/lod/ontology/crossDomain/dimension/2016/&gt;</span><span class="w"> </span>
+<span class="k">PREFIX</span><span class="w"> </span><span class="nn">pc-code-2010</span><span class="p">:</span><span class="nl">&lt;http://data.e-stat.go.jp/lod/ontology/populationCensus/code/2010/&gt;</span><span class="w"> </span>
+<span class="k">PREFIX</span><span class="w"> </span><span class="nn">cd-code-2016</span><span class="p">:</span><span class="nl">&lt;http://data.e-stat.go.jp/lod/ontology/crossDomain/code/2016/&gt;</span><span class="w"> </span>
+<span class="k">PREFIX</span><span class="w"> </span><span class="nn">ic</span><span class="p">:</span><span class="nl">&lt;http://imi.ipa.go.jp/ns/core/rdf#&gt;</span><span class="w"> </span>
+<span class="k">select</span><span class="w"> </span><span class="nv">?shiku</span><span class="w"> </span><span class="nv">?hoikusyo</span><span class="w">  </span><span class="nv">?zaisyo</span><span class="w"> </span><span class="nv">?taiki</span><span class="w"> </span><span class="nv">?byoin</span><span class="w"> </span><span class="nv">?jinko</span><span class="w"></span>
+<span class="k">where</span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nv">?s1</span><span class="w"> </span><span class="nn">ssds-measure-2016</span><span class="p">:</span><span class="nt">J250502</span><span class="w"> </span><span class="nv">?taiki</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="nn">cd-dimension</span><span class="p">:</span><span class="nt">standardAreaCode</span><span class="w"> </span><span class="nv">?areacode</span><span class="p">.</span><span class="w"></span>
+<span class="w">     </span><span class="nv">?areacode</span><span class="w"> </span><span class="err">ic</span><span class="p">:</span><span class="err">都道府県</span><span class="w">  </span><span class="s">&quot;東京都&quot;</span><span class="o">@</span><span class="nf">ja</span><span class="p">;</span><span class="w"></span>
+<span class="w">         </span><span class="err">ic</span><span class="p">:</span><span class="err">市区町村</span><span class="w"> </span><span class="nv">?shiku</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">?s2</span><span class="w"> </span><span class="nn">ssds-measure-2016</span><span class="p">:</span><span class="nt">J2503</span><span class="w"> </span><span class="nv">?hoikusyo</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="nn">cd-dimension</span><span class="p">:</span><span class="nt">standardAreaCode</span><span class="w"> </span><span class="nv">?areacode</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">?s3</span><span class="w"> </span><span class="nn">ssds-measure-2016</span><span class="p">:</span><span class="nt">J2506</span><span class="w"> </span><span class="nv">?zaisyo</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="nn">cd-dimension</span><span class="p">:</span><span class="nt">standardAreaCode</span><span class="w"> </span><span class="nv">?areacode</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">?s4</span><span class="w"> </span><span class="nn">ssds-measure-2016</span><span class="p">:</span><span class="nt">I510120</span><span class="w"> </span><span class="nv">?byoin</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="nn">cd-dimension</span><span class="p">:</span><span class="nt">standardAreaCode</span><span class="w"> </span><span class="nv">?areacode</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">?s5</span><span class="w"> </span><span class="nn">pc-measure-2010</span><span class="p">:</span><span class="nt">population</span><span class="w"> </span><span class="nv">?jinko</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="nn">cd-dimension</span><span class="p">:</span><span class="nt">standardAreaCode</span><span class="w"> </span><span class="nv">?areacode</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="nn">cd-dimension-2016</span><span class="p">:</span><span class="nt">sex</span><span class="w"> </span><span class="nn">cd-code-2016</span><span class="p">:</span><span class="nt">sex-total</span><span class="w"> </span><span class="p">;</span><span class="w"> </span>
+<span class="w">         </span><span class="nn">cd-dimension-2016</span><span class="p">:</span><span class="nt">nationality</span><span class="w"> </span><span class="nn">cd-code-2016</span><span class="p">:</span><span class="nt">nationality-japanese</span><span class="w"> </span><span class="p">;</span><span class="w"> </span>
+<span class="w">         </span><span class="nn">pc-dimension-2010</span><span class="p">:</span><span class="nt">area</span><span class="w"> </span><span class="nn">pc-code-2010</span><span class="p">:</span><span class="nt">area-all</span><span class="w"> </span><span class="p">;</span><span class="w"> </span>
+<span class="w">         </span><span class="nn">cd-dimension-2016</span><span class="p">:</span><span class="nt">age</span><span class="w"> </span><span class="nn">cd-code-2016</span><span class="p">:</span><span class="nt">age-total</span><span class="w"> </span><span class="p">.</span><span class="w"> </span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<div class="krn-spql"><div class="magic">Endpoint set to: http://data.e-stat.go.jp/lod/sparql/query</div><div class="magic">Display: table</div></div>
+</div>
+
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<div class="krn-spql"><table><tr class=hdr><th>shiku</th>
+<th>hoikusyo</th>
+<th>zaisyo</th>
+<th>taiki</th>
+<th>byoin</th>
+<th>jinko</th></tr><tr class=odd><td class=val>八王子市</td>
+<td class=val>82</td>
+<td class=val>9172</td>
+<td class=val>253</td>
+<td class=val>33</td>
+<td class=val>568293</td></tr><tr class=even><td class=val>稲城市</td>
+<td class=val>12</td>
+<td class=val>1424</td>
+<td class=val>50</td>
+<td class=val>3</td>
+<td class=val>83200</td></tr><tr class=odd><td class=val>日の出町</td>
+<td class=val>4</td>
+<td class=val>504</td>
+<td class=val>26</td>
+<td class=val>2</td>
+<td class=val>16591</td></tr><tr class=even><td class=val>羽村市</td>
+<td class=val>12</td>
+<td class=val>1217</td>
+<td class=val>6</td>
+<td class=val>2</td>
+<td class=val>55379</td></tr><tr class=odd><td class=val>瑞穂町</td>
+<td class=val>7</td>
+<td class=val>618</td>
+<td class=val>1</td>
+<td class=val>1</td>
+<td class=val>32979</td></tr><tr class=even><td class=val>利島村</td>
+<td class=val>1</td>
+<td class=val>24</td>
+<td class=val>0</td>
+<td class=val>0</td>
+<td class=val>339</td></tr><tr class=odd><td class=val>目黒区</td>
+<td class=val>26</td>
+<td class=val>2498</td>
+<td class=val>132</td>
+<td class=val>9</td>
+<td class=val>260870</td></tr><tr class=even><td class=val>町田市</td>
+<td class=val>56</td>
+<td class=val>5257</td>
+<td class=val>257</td>
+<td class=val>14</td>
+<td class=val>419062</td></tr><tr class=odd><td class=val>青梅市</td>
+<td class=val>32</td>
+<td class=val>3322</td>
+<td class=val>19</td>
+<td class=val>8</td>
+<td class=val>138341</td></tr><tr class=even><td class=val>杉並区</td>
+<td class=val>55</td>
+<td class=val>5390</td>
+<td class=val>285</td>
+<td class=val>17</td>
+<td class=val>506982</td></tr><tr class=odd><td class=val>江東区</td>
+<td class=val>72</td>
+<td class=val>7002</td>
+<td class=val>416</td>
+<td class=val>17</td>
+<td class=val>444062</td></tr><tr class=even><td class=val>福生市</td>
+<td class=val>12</td>
+<td class=val>1250</td>
+<td class=val>0</td>
+<td class=val>4</td>
+<td class=val>56998</td></tr><tr class=odd><td class=val>豊島区</td>
+<td class=val>31</td>
+<td class=val>3041</td>
+<td class=val>270</td>
+<td class=val>15</td>
+<td class=val>261282</td></tr><tr class=even><td class=val>檜原村</td>
+<td class=val>1</td>
+<td class=val>53</td>
+<td class=val>0</td>
+<td class=val>0</td>
+<td class=val>2549</td></tr><tr class=odd><td class=val>府中市</td>
+<td class=val>40</td>
+<td class=val>4176</td>
+<td class=val>181</td>
+<td class=val>13</td>
+<td class=val>247986</td></tr><tr class=even><td class=val>足立区</td>
+<td class=val>88</td>
+<td class=val>8847</td>
+<td class=val>294</td>
+<td class=val>47</td>
+<td class=val>656755</td></tr><tr class=odd><td class=val>中野区</td>
+<td class=val>36</td>
+<td class=val>3469</td>
+<td class=val>147</td>
+<td class=val>10</td>
+<td class=val>297620</td></tr><tr class=even><td class=val>東大和市</td>
+<td class=val>15</td>
+<td class=val>1788</td>
+<td class=val>79</td>
+<td class=val>2</td>
+<td class=val>81800</td></tr><tr class=odd><td class=val>小平市</td>
+<td class=val>18</td>
+<td class=val>1956</td>
+<td class=val>174</td>
+<td class=val>8</td>
+<td class=val>181924</td></tr><tr class=even><td class=val>昭島市</td>
+<td class=val>19</td>
+<td class=val>2517</td>
+<td class=val>46</td>
+<td class=val>7</td>
+<td class=val>110292</td></tr></table><div class="tinfo">Total: 63, Shown: 20</div></div>
 </div>
 
 </div>
