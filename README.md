@@ -1,4 +1,4 @@
-# hello estat LODについて
+# 統計LOD NOTEBOOKについて
 
 日本の政府統計をLinked Open Dataとして公開する統計LODは、
 難解なエクセルのデータを構造化し機械的な取得を実現した
