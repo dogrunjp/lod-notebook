@@ -10,10 +10,12 @@
 ## 便利なツール
 
 [統計LODサポート](http://idease.info/lodstat/)
+
 キーワード検索で関連するデータのプロパティ一覧を検索できます。すごく便利。
 
 
 [e-STAT SPARQL Builder](http://www.kanzaki.com/works/2016/pub/estat.html)
+
 データセットを選ぶと速度、次元などのデータキューブがオプションとして選択できるようになり
 SPARQLに反映されます。統計LODのスキーマがどんな感じなのか知るツールとして、触っても良いかも。
 
@@ -45,19 +47,8 @@ SPARQLに反映されます。統計LODのスキーマがどんな感じなの�
 
 [http://data.e-stat.go.jp/lod/sparql/query?query=]( http://data.e-stat.go.jp/lod/sparql/query?query=)
 
-## 統計LODのSPARQL
 
-○○の○○を取得するサンプル
-
-![統計LOD SPARQLエディタ画面](sample_screenshot.png)
-
-
-### 統計LODのプレフィックス
-
-
-## 参考
-
-
+## 利用イメージ
 
 [notebookのプレビュー](http://nbviewer.jupyter.org/github/dogrunjp/hello_estat_lod/blob/master/index.ipynb)
 
