@@ -29,13 +29,6 @@ SPARQLに反映されます。統計LODのスキーマがどんな感じなの�
 - H22消費者物価指数:[]()
 - H27社会・人口統計体系:[]()
 
-### データセットのプロパティ
-
-## プロパティ
-
-### プロパティ一覧
-
-
 
 ## エンドポイント
 
@@ -48,7 +41,19 @@ SPARQLに反映されます。統計LODのスキーマがどんな感じなの�
 [http://data.e-stat.go.jp/lod/sparql/query?query=]( http://data.e-stat.go.jp/lod/sparql/query?query=)
 
 
-## 利用イメージ
+## Jupyter notebookについて
 
-[notebookのプレビュー](http://nbviewer.jupyter.org/github/dogrunjp/hello_estat_lod/blob/master/index.ipynb)
+このレポジトリのSPARQLのサンプルはJupyterの[SPARQL kernel](https://github.com/paulovn/sparql-kernel)で実行しています。
+Jupyterのインストールされた環境では
+```
+pip install sparqlkernel
+jupyter sparqlkernel install
+```
+でkernelをインストールすることができます。
 
+このレポジトリで公開されているnotebookは、Jupyterの環境が無い場合は、[nbviewer](http://nbviewer.jupyter.org)でレンダリングした結果をみることができます。
+プレビュー版の[統計LOD NOTEBOOKのnbviewerバージョンはこちらで見る事ができます＞](http://nbviewer.jupyter.org/github/dogrunjp/hello_estat_lod/blob/master/index.ipynb)。
+
+
+nbviewで[sparql kernelのサンプルクエリ](http://nbviewer.jupyter.org/github/paulovn/sparql-kernel/blob/master/examples/sparql-endpoints.ipynb)を
+見ると、マジックワードやドキュメントに無い設定などを見ることができます。
