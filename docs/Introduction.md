@@ -43,7 +43,7 @@ SPARQLに反映されます。統計LODのスキーマがどんな感じなの�
 
 ## Jupyter notebookについて
 
-このレポジトリのSPARQLのサンプルはJupyterの[SPARQL kernel](https://github.com/paulovn/sparql-kernel)で実行しています。
+- このレポジトリのSPARQLのサンプルはJupyterの[SPARQL kernel](https://github.com/paulovn/sparql-kernel)で実行しています。
 Jupyterのインストールされた環境では
 ```
 pip install sparqlkernel
@@ -51,9 +51,15 @@ jupyter sparqlkernel install
 ```
 でkernelをインストールすることができます。
 
-このレポジトリで公開されているnotebookは、Jupyterの環境が無い場合は、[nbviewer](http://nbviewer.jupyter.org)でレンダリングした結果をみることができます。
+- このレポジトリで公開されているnotebookは、Jupyterの環境が無い場合は、[nbviewer](http://nbviewer.jupyter.org)でレンダリングした結果をみることができます。
 プレビュー版の[統計LOD NOTEBOOKのnbviewerバージョンはこちらで見る事ができます＞](http://nbviewer.jupyter.org/github/dogrunjp/hello_estat_lod/blob/master/index.ipynb)。
 
+- nbviewrはipynbファイルから都度HTMLをレンダリングする仕様ですが、１０分間ほどはデータをキャッシュして持っているようです。強制的に表示をアップデートしたい場合はURLに
+```
+?flush_cache=true
+```
+を付けると良いようです。
 
-nbviewで[sparql kernelのサンプルクエリ](http://nbviewer.jupyter.org/github/paulovn/sparql-kernel/blob/master/examples/sparql-endpoints.ipynb)を
+- nbviewで[sparql kernelのサンプルクエリ](http://nbviewer.jupyter.org/github/paulovn/sparql-kernel/blob/master/examples/sparql-endpoints.ipynb)を
 見ると、マジックワードやドキュメントに無い設定などを見ることができます。
+
