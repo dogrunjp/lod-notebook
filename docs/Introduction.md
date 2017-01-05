@@ -52,7 +52,7 @@ jupyter sparqlkernel install
 でkernelをインストールすることができます。
 
 - このレポジトリで公開されているnotebookは、Jupyterの環境が無い場合は、[nbviewer](http://nbviewer.jupyter.org)でレンダリングした結果をみることができます。
-プレビュー版の[統計LOD NOTEBOOKのnbviewerバージョンはこちらで見る事ができます＞](http://nbviewer.jupyter.org/github/dogrunjp/hello_estat_lod/blob/master/index.ipynb)。
+プレビュー版の[統計LOD NOTEBOOKのnbviewerバージョンはこちらで見る事ができます＞](http://nbviewer.jupyter.org/github/dogrunjp/lod-notebook/blob/master/index.ipynb)。
 
 - nbviewrはipynbファイルから都度HTMLをレンダリングする仕様ですが、１０分間ほどはデータをキャッシュして持っているようです。強制的に表示をアップデートしたい場合はURLに
 ```
