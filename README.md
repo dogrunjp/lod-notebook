@@ -11,7 +11,7 @@
 そのノウハウを蓄積し、できれば共有していきたいと考えています。
 
 
-[preview](http://nbviewer.jupyter.org/github/dogrunjp/hello_estat_lod/blob/master/index.ipynb)
+[preview](http://nbviewer.jupyter.org/github/dogrunjp/lod-notebook/blob/master/index.ipynb)
 
 
 Jupyterにsparql kernelをインストールするとipynbファイルが実行できると思います。
