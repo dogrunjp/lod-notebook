@@ -50,29 +50,6 @@ def get_area_code():
 
 
 class Store:
-    def test(self):
-        sparql.setQuery("""
-            PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-            PREFIX ssds-measure-2016:<http://data.e-stat.go.jp/lod/ontology/systemOfSocialAndDemographicStatistics/measure/2016/>
-            PREFIX cd-dimension:<http://data.e-stat.go.jp/lod/ontology/crossDomain/dimension/>
-            select ?areacode ?seizouhin_syukka
-            where{
-                ?s1 ssds-measure-2016:C3401 ?seizouhin_syukka ;
-                    cd-dimension:standardAreaCode ?areacode .
-            }
-        """)
-        sparql.setReturnFormat(JSON)
-        results = sparql.query().convert()
-        items = []
-        for result in results["results"]["bindings"]:
-            area = result["areacode"]["value"]
-            seizouhin_syukka = result["seizouhin_syukka"]["value"]
-            updata = {"$set": {"area_code": area, "seizouhin_syukka": seizouhin_syukka}}
-            print(updata)
-            items.append(updata)
-
-        print(len(items))
-
     def get_area_name(self):
         sparql.setQuery("""
             PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
@@ -516,4 +493,4 @@ class Store:
             db_connect["area_data"].update({"_id": area}, updata)
 
 if __name__ == '__main__':
-    Store().get_seizouhin()
+    call_all_SPARQL(Store())
