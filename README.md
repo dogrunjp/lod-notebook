@@ -11,8 +11,8 @@
 そのノウハウを蓄積し、できれば共有していきたいと考えています。
 
 
-[preview](http://nbviewer.jupyter.org/github/dogrunjp/lod-notebook/blob/master/index.ipynb)
+- [初めての統計LOD](http://nbviewer.jupyter.org/github/dogrunjp/lod-notebook/blob/master/index.ipynb)
+- [統計LODの市町村区のデータを分析](https://github.com/dogrunjp/lod-notebook/blob/master/clustering.ipynb)
 
-
-Jupyterにsparql kernelをインストールするとipynbファイルが実行できると思います。
-githubではsparql kernelがレンダリングされないようなので、プレビューを見たい場合は上記のリンクからご覧ください。
+※Jupyterにsparql kernelをインストールすると上記の[初めての統計LOD](http://nbviewer.jupyter.org/github/dogrunjp/lod-notebook/blob/master/index.ipynb)が実行できると思います。
+githubではsparql kernelがレンダリングされないようなので、プレビューを見たい場合はリンクからご覧ください。
