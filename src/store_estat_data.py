@@ -13,7 +13,7 @@ sparql = SPARQLWrapper('http://data.e-stat.go.jp/lod/sparql/query')
 # 全てのSPARQLを実行し、mongodbへ取得した値を格納するには
 # call_all_SPARQL(Store())
 def call_all_SPARQL(obj):
-    get_area_code()
+    #get_area_code()
     for f in dir(obj):
         attr = getattr(obj, f)
         if ismethod(attr):
@@ -50,6 +50,30 @@ def get_area_code():
 
 
 class Store:
+    def test(self):
+        sparql.setQuery("""
+            PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX ssds-measure-2016:<http://data.e-stat.go.jp/lod/ontology/systemOfSocialAndDemographicStatistics/measure/2016/>
+            PREFIX cd-dimension:<http://data.e-stat.go.jp/lod/ontology/crossDomain/dimension/>
+            select ?areacode ?seizouhin_syukka
+            where{
+                ?s1 ssds-measure-2016:C3401 ?seizouhin_syukka ;
+                    cd-dimension:standardAreaCode ?areacode .
+            }
+        """)
+        sparql.setReturnFormat(JSON)
+        results = sparql.query().convert()
+        items = []
+        for result in results["results"]["bindings"]:
+            area = result["areacode"]["value"]
+            seizouhin_syukka = result["seizouhin_syukka"]["value"]
+            updata = {"$set": {"area_code": area, "seizouhin_syukka": seizouhin_syukka}}
+            print(updata)
+            items.append(updata)
+
+        print(len(items))
+
+    # 都道府県名、市町村区名
     def get_area_name(self):
         sparql.setQuery("""
             PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
@@ -70,6 +94,7 @@ class Store:
             updata = {"$set": {"pref": pref, "city": city}}
             db_connect["area_data"].update({"_id": area_code}, updata)
 
+    # 女性の人口
     def get_population_female(self):
         sparql.setQuery("""
             PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
@@ -95,9 +120,10 @@ class Store:
         for result in results["results"]["bindings"]:
             area_code = result["areacode"]["value"]
             female = result["female"]["value"]
-            update = {"$set": {"female": female}}
+            update = {"$set": {"p_female": female}}
             db_connect["area_data"].update({"_id": area_code}, update)
 
+    # 男性の人口
     def get_population_male(self):
         sparql.setQuery("""
             PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
@@ -123,7 +149,7 @@ class Store:
         for result in results["results"]["bindings"]:
             area_code = result["areacode"]["value"]
             male = result["male"]["value"]
-            updata = {"$set": {"male": male}}
+            updata = {"$set": {"p_male": male}}
             db_connect["area_data"].update({"_id": area_code}, updata)
 
     # 保育所
@@ -148,7 +174,7 @@ class Store:
             hoikusyo = result["hoikusyo"]["value"]
             jidou_taiki = result["jidou_taiki"]["value"]
             jidou_zaisyo = result["jidou_zaisyo"]["value"]
-            updata = {"$set": {"hoikusyo": hoikusyo, "jidou_taiki": jidou_taiki, "jidou_zaisyo": jidou_zaisyo}}
+            updata = {"$set": {"c_hoikusyo": hoikusyo, "c_jidou_taiki": jidou_taiki, "c_jidou_zaisyo": jidou_zaisyo}}
             db_connect["area_data"].update({"_id": area}, updata)
 
     # 児童福祉施設
@@ -167,7 +193,7 @@ class Store:
         for result in results["results"]["bindings"]:
             area = result["areacode"]["value"]
             jidou_fukushi = result["jidou_fukushi"]["value"]
-            updata = {"$set": {"jidou_fukushi": jidou_fukushi}}
+            updata = {"$set": {"c_jidou_fukushi": jidou_fukushi}}
             db_connect["area_data"].update({"_id": area}, updata)
 
     # 幼稚園
@@ -189,7 +215,7 @@ class Store:
             area = result["areacode"]["value"]
             yochien = result["yochien"]["value"]
             yochien_zaien = result["yochien_zaien"]["value"]
-            updata = {"$set": {"yochien": yochien, "yochien_zaien":yochien_zaien}}
+            updata = {"$set": {"e_yochien": yochien, "e_yochien_zaien":yochien_zaien}}
             db_connect["area_data"].update({"_id": area}, updata)
 
     # 小学校
@@ -214,8 +240,8 @@ class Store:
             syogakukou = result["syogakukou"]["value"]
             syogaku_kyoin = result["syogaku_kyoin"]["value"]
             syogaku_jidou = result["syogaku_jidou"]["value"]
-            updata = {"$set": { "syogakukou": syogakukou, "syogaku_kyoin": syogaku_kyoin,
-                               "syogaku_jidou": syogaku_jidou}}
+            updata = {"$set": { "e_syogakukou": syogakukou, "e_syogaku_kyoin": syogaku_kyoin,
+                               "e_syogaku_jidou": syogaku_jidou}}
             db_connect["area_data"].update({"_id": area}, updata)
 
     # 中学校
@@ -240,7 +266,7 @@ class Store:
             tyuugaku = result["tyuugaku"]["value"]
             tyuugaku_seito = result["tyuugaku_seito"]["value"]
             tyuugaku_kyoin = result["tyuugaku_kyoin"]["value"]
-            updata = {"$set": {"tyuugaku": tyuugaku, "tyuugaku_seito":tyuugaku_seito, "tyuugaku_kyoin": tyuugaku_kyoin}}
+            updata = {"$set": {"e_tyuugaku": tyuugaku, "e_tyuugaku_seito":tyuugaku_seito, "e_tyuugaku_kyoin": tyuugaku_kyoin}}
             db_connect["area_data"].update({"_id": area}, updata)
 
     # 高校
@@ -263,7 +289,7 @@ class Store:
             area = result["areacode"]["value"]
             koukou = result["koukou"]["value"]
             koukou_seito = result["koukou_seito"]["value"]
-            updata = {"$set": {"koukou": koukou, "koukou_seito": koukou_seito}}
+            updata = {"$set": {"e_koukou": koukou, "e_koukou_seito": koukou_seito}}
             db_connect["area_data"].update({"_id": area}, updata)
 
     # 地方税
@@ -283,10 +309,10 @@ class Store:
         for result in results["results"]["bindings"]:
             area = result["areacode"]["value"]
             local_tax = result["local_tax"]["value"]
-            updata = {"$set": {"local_tax": local_tax}}
+            updata = {"$set": {"t_local_tax": local_tax}}
             db_connect["area_data"].update({"_id": area}, updata)
 
-    # 出生・志望
+    # 出生・死亡
     def get_syussei(self):
         sparql.setQuery("""
                     PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
@@ -306,7 +332,7 @@ class Store:
             area = result["areacode"]["value"]
             syussei = result["syussei"]["value"]
             sibou = result["sibou"]["value"]
-            updata = {"$set": {"syussei": syussei, "sibou": sibou}}
+            updata = {"$set": {"p_syussei": syussei, "p_sibou": sibou}}
             db_connect["area_data"].update({"_id": area}, updata)
 
     # 婚姻・離婚
@@ -329,7 +355,7 @@ class Store:
             area = result["areacode"]["value"]
             konin = result["konin"]["value"]
             rikon = result["rikon"]["value"]
-            updata = {"$set": {"konin": konin, "rikon": rikon}}
+            updata = {"$set": {"p_konin": konin, "p_rikon": rikon}}
             db_connect["area_data"].update({"_id": area}, updata)
 
     # 医療
@@ -355,7 +381,7 @@ class Store:
             byoin = result["byoin"]["value"]
             sinryojyo = result["sinryojyo"]["value"]
             ishi = result["ishi"]["value"]
-            updata = {"$set": {"byoin": byoin, "sinryojyo": sinryojyo, "ishi": ishi}}
+            updata = {"$set": {"m_byoin": byoin, "m_sinryojyo": sinryojyo, "m_ishi": ishi}}
             db_connect["area_data"].update({"_id": area}, updata)
 
     # 介護
@@ -375,7 +401,7 @@ class Store:
         for result in results["results"]["bindings"]:
             area = result["areacode"]["value"]
             kaigo_sisetsu = result["kaigo_sisetsu"]["value"]
-            updata = {"$set": {"kaigo_sisetsu": kaigo_sisetsu}}
+            updata = {"$set": {"m_kaigo_sisetsu": kaigo_sisetsu}}
             db_connect["area_data"].update({"_id": area}, updata)
 
     # 住民基本台帳人口移動
@@ -398,7 +424,7 @@ class Store:
             area = result["areacode"]["value"]
             tennyuu = result["tennyuu"]["value"]
             tensyutsu = result["tensyutsu"]["value"]
-            updata = {"$set": {"tennyuu": tennyuu, "tensyutsu": tensyutsu}}
+            updata = {"$set": {"p_tennyuu": tennyuu, "p_tensyutsu": tensyutsu}}
             db_connect["area_data"].update({"_id": area}, updata)
 
     # 自市区町村の就業者・通勤している就業者
@@ -424,8 +450,8 @@ class Store:
             jitiku_syuugyo = result["jitiku_syuugyo"]["value"]
             tatikuhe_tuukin = result["tatikuhe_tuukin"]["value"]
             taikukara_tuukin = result["taikukara_tuukin"]["value"]
-            updata = {"$set": {"jitiku_syuugyo": jitiku_syuugyo, "tatikuhe_tuukin": tatikuhe_tuukin,
-                               "taikukara_tuukin": taikukara_tuukin}}
+            updata = {"$set": {"w_jitiku_syuugyo": jitiku_syuugyo, "w_tatikuhe_tuukin": tatikuhe_tuukin,
+                               "w_taikukara_tuukin": taikukara_tuukin}}
             db_connect["area_data"].update({"_id": area}, updata)
 
     # 小売業
@@ -448,7 +474,7 @@ class Store:
             area = result["areacode"]["value"]
             kouriten = result["kouriten"]["value"]
             oogata_kouriten = result["oogata_kouriten"]["value"]
-            updata = {"$set": {"kouriten": kouriten, "oogata_kouriten": oogata_kouriten}}
+            updata = {"$set": {"i_kouriten": kouriten, "i_oogata_kouriten": oogata_kouriten}}
             db_connect["area_data"].update({"_id": area}, updata)
 
         sparql.setQuery("""
@@ -469,7 +495,7 @@ class Store:
             area = result["areacode"]["value"]
             hyakkaten = result["hyakkaten"]["value"]
             insyokuten = result["insyokuten"]["value"]
-            updata = {"$set": {"hyakkaten": hyakkaten, "insyokuten": insyokuten}}
+            updata = {"$set": {"i_hyakkaten": hyakkaten, "i_insyokuten": insyokuten}}
             db_connect["area_data"].update({"_id": area}, updata)
 
     # 製造品出荷額等
@@ -489,7 +515,7 @@ class Store:
         for result in results["results"]["bindings"]:
             area = result["areacode"]["value"]
             seizouhin_syukka = result["seizouhin_syukka"]["value"]
-            updata = {"$set": {"seizouhin_syukka": seizouhin_syukka}}
+            updata = {"$set": {"i_seizouhin_syukka": seizouhin_syukka}}
             db_connect["area_data"].update({"_id": area}, updata)
 
 if __name__ == '__main__':
