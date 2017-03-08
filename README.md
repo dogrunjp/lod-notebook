@@ -14,5 +14,19 @@
 - [初めての統計LOD](http://nbviewer.jupyter.org/github/dogrunjp/lod-notebook/blob/master/index.ipynb)
 - [統計LODの市町村区のデータを分析](https://github.com/dogrunjp/lod-notebook/blob/master/clustering.ipynb)
 
+
 ※Jupyterにsparql kernelをインストールすると上記の[初めての統計LOD](http://nbviewer.jupyter.org/github/dogrunjp/lod-notebook/blob/master/index.ipynb)が実行できると思います。
 githubではsparql kernelがレンダリングされないようなので、プレビューを見たい場合はリンクからご覧ください。
+
+
+## 法人インフォについて
+
+経済産業省などにより、統計LODと同じように共通語彙基盤を使ってLODとして法人活動情報を公開する
+[法人インフォ](http://hojin-info.go.jp/hojin/TopPage)についても、
+極基本的なSPARQLのみですがサンプルを公開しています。
+
+- [法人インフォメーションAPI利用ノート](https://github.com/dogrunjp/lod-notebook/blob/master/hojin-info.ipynb)
+
+- [Python-SPARQLWrapperによる法人インフォの利用](https://github.com/dogrunjp/lod-notebook/blob/master/hojin-info-py.ipynb)
+
+- [D3.jsによる法人インフォの利用](https://github.com/dogrunjp/lod-notebook/blob/master/hojin-info-d3.ipynb)
